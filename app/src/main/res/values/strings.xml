@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">AgroEcologico</string>
+    <string name="title_active_login">Loguin</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo</string>
+    <string name="login">Login</string>
+    <string name="repeat_password">Confirma la contraseña</string>
+    <string name="signup">Iniciar sesion</string>
+    <string name="link_signup">Iniciar</string>
+    <string name="all">TODO</string>
+    <string name="update_profile">Guardar</string>
+    <string name="delete_account">Eliminar cuenta</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="forget_password">¿olvidaste tu contraseña?</string>
+    <string name="title_check_email">Verificacion de Email</string>
+    <string name="continue_check_email">Continuar</string>
+    <string name="subtitle_account_recovery">Ingresa tu email para que se te pueda enviar un correo con los pasos para cambiar tu contraseña.</string>
+    <string name="recovery_account">Enviar</string>
+    <string name="title_update_password">Cambio de contraseña</string>
+    <string name="subtitle_update_password">Por motivos de seguridad para cambiar tu contraseña, primero debes ingresar tu contraseña actual.</string>
+    <string name="delete">Eliminar</string>
+    <string name="TextPruebaitem">Texto de prueba</string>
+    <string name="TextPersonal">Datos Personales</string>
+    <string name="TextNombre">Nombre Completo</string>
+    <string name="TextDoc">Documento</string>
+    <string name="TextTelefono">Teléfono</string>
+    <string name="TextEmail">Correo Electronico</string>
+    <string name="TextPass">Contraseña</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragmento.HomeAdminFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvPuestoAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cvAddunidad"
+        android:layout_margin="@dimen/cardimgAncho"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivPuestoVenta"
+                android:layout_width="@dimen/CardTam"
+                android:layout_height="@dimen/CardTam"
+                android:layout_marginTop="@dimen/cardimgAncho"
+                android:layout_marginBottom="@dimen/cardimgAncho"
+                android:layout_marginStart="@dimen/cardimgAncho"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_puesto"
+                android:layout_marginLeft="@dimen/cardimgAncho"
+                android:layout_alignParentLeft="true" />
+
+
+
+            <TextView
+                android:id="@+id/tvPuestoVenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="59dp"
+                android:layout_marginLeft="59dp"
+                android:layout_marginTop="47dp"
+                android:layout_toEndOf="@+id/ivPuestoVenta"
+                android:layout_toRightOf="@+id/ivPuestoVenta"
+                android:text="Crear Puesto"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+
+                />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvAddunidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cvPuestoAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/cardimgAncho"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="30dp"
+        android:clickable="true"
+        android:padding="@dimen/cardimgAncho"
+        android:layout_marginBottom="@dimen/cardimgAncho">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cardimgAncho"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivAddunidad"
+                android:layout_width="@dimen/CardTam"
+                android:layout_height="@dimen/CardTam"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/cardimgAncho"
+                android:layout_marginTop="@dimen/cardimgAncho"
+                android:layout_marginBottom="@dimen/cardimgAncho"
+                android:src="@drawable/ic_add_box"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/cardimgAncho" />
+
+
+            <TextView
+                android:id="@+id/tvAddunidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="59dp"
+                android:layout_marginLeft="59dp"
+                android:layout_marginTop="47dp"
+                android:layout_toEndOf="@+id/ivAddunidad"
+                android:layout_toRightOf="@+id/ivAddunidad"
+                android:text="Crear Unidad"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardimgAncho">12dp</dimen>
+    <dimen name="MargincardDefaul">40dp</dimen>
+    <dimen name="CardTam">100dp</dimen>
+    <dimen name="marginTextTopTile">50dp</dimen>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/drawable/ic_add_box.xml" value="0.2203125" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/activity_registro_usuario.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/fragment_home_admin.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/fragment_prueba.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/fragment_pv_admin.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/DAVIS/Documents/Programacion/ProyectosDevApp/AgroEcologico/app/src/main/res/layout/fragment_unidadv_admin.xml" value="0.18931159420289856" />
+        <entry key="..\:/Users/Walter/Downloads/AgroEcologico/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.1" />
+        <entry key="..\:/Users/Walter/Downloads/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="1.0" />
+        <entry key="..\:/Users/Walter/Downloads/AgroEcologico/app/src/main/res/layout/activity_registro_usuario.xml" value="0.22" />
+        <entry key="..\:/Users/Walter/Downloads/Kate/AgroEcologico/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.1875" />
+        <entry key="..\:/Users/Walter/Downloads/Kate/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/krc15/AndroidStudioProjects/AgroEcologico/app/src/main/res/drawable/ic_back.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/krc15/AndroidStudioProjects/AgroEcologico/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.22" />
+        <entry key="..\:/Users/krc15/AndroidStudioProjects/AgroEcologico/app/src/main/res/layout/activity_main.xml" value="0.15534420289855072" />
+        <entry key="..\:/Users/krc15/AndroidStudioProjects/AgroEcologico/app/src/main/res/layout/activity_sign_in.xml" value="0.15534420289855072" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
