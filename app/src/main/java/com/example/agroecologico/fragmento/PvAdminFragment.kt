@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.agroecologico.ManejadorCorreo
 import com.example.agroecologico.R
 import com.example.agroecologico.databinding.FragmentPvAdminBinding
 import com.example.agroecologico.data.UsuarioData
@@ -107,6 +108,13 @@ class PvAdminFragment : Fragment() {
                 ).show()
             }
         })
+
+        val manejadorCorreo = ManejadorCorreo("${mBinding.teEmail1.text.toString()}",
+            "Confirmacion de creación del puesto de venta: ${puesto} en AgroEcologico",
+            "Bienvenido a AgroEcologico \n Su Usuarion es: ${ mBinding.teEmail1.text.toString()} \n " +
+                    "Su contraseña es: ${mBinding.tePassword1.text.toString()}"+"\n Uselos para iniciar sesion en nuestra aplicacion",
+            context)
+        manejadorCorreo.enviarEmail()
 
 
 

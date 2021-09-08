@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             signOut()
         }
-        CargarFragmento()
 
+        CargarFragmento()
 
     }
         //Funcion para cerrar la sesion iniciada
@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
 
     }
 
