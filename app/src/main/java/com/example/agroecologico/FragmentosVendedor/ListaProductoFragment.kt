@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.agroecologico.R
+import com.example.agroecologico.databinding.FragmentListaProductoBinding
 
 
 class ListaProductoFragment : Fragment() {
 
-
+        private lateinit var mBinding: FragmentListaProductoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_producto, container, false)
+        mBinding = FragmentListaProductoBinding.inflate(inflater, container, false)
+        return mBinding.root
     }
 
 
