@@ -28,4 +28,7 @@
     <string name="TextPass">Contraseña</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textHome">Inico</string>
+    <string name="textProducto">Productos</string>
+    <string name="textPedidos">Pedidos</string>
 </resources>

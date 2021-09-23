@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="textHome">Inico</string>
+    <string name="textProducto">Productos</string>
+    <string name="textPedidos">Pedidos</string>
+</resources>
