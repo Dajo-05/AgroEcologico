@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    //Mensaje que aparece en pantalla inicio
+
 
     <FrameLayout
         android:id="@+id/flMain"
@@ -15,18 +15,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-    //Boton que permite cerrar sesion
-    <ImageView
-        android:id="@+id/backImageView"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btnNav"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="324dp"
-        android:layout_marginLeft="324dp"
-        android:layout_marginTop="36dp"
-        android:contentDescription="@string/all"
+        app:menu="@menu/menu_nav"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:background="@color/navBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_sign_out"
-        tools:ignore="VectorDrawableCompat" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

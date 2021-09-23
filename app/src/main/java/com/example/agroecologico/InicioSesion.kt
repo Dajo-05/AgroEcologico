@@ -35,7 +35,7 @@ class InicioSesion: AppCompatActivity() {
         }
 
     }
-/*
+
     public override fun onStart() {
         super.onStart()
         // Verifica si el usuario existe
@@ -44,7 +44,7 @@ class InicioSesion: AppCompatActivity() {
             redireccionar();
         }
     }
-*/
+
 
     //funcion para validar el incio de sesion
     private fun InicioSesion (correo:String, contraseña:String){
@@ -66,6 +66,13 @@ class InicioSesion: AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         this.startActivity(intent)
     }
+
+    /*override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }*/
+
+
 
 
 }
