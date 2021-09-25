@@ -11,6 +11,7 @@ import com.example.agroecologico.ManejadorCorreo
 import com.example.agroecologico.R
 import com.example.agroecologico.databinding.FragmentPvAdminBinding
 import com.example.agroecologico.data.UsuarioData
+import com.example.pruebaapp.data.PuestoVentaData
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -96,8 +97,10 @@ class PvAdminFragment : Fragment() {
             if (task.isSuccessful) {
 
                 val userId = auth.currentUser?.uid.toString()
+                val venta =  PuestoVentaData(idpuesto = userId, nombrePuesto = puesto, telefono = user.telefono,
+                                              correo = user.correo, whatsapp = user.telefono, telegran = user.telefono)
                 database.child("Usuarios").child(userId).setValue(user)
-                database.child("PuestoVenta").child("${puesto}").child(userId).setValue(user)
+                database.child("PuestoVenta").child("${userId}").child(puesto).setValue(venta)
 
             } else {
 
