@@ -1,24 +1,100 @@
 package com.example.agroecologico.FragmentosVendedor
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.agroecologico.R
+import androidx.fragment.app.Fragment
 import com.example.agroecologico.databinding.FragmentHomeVendedorBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 
 class HomeVendedorFragment : Fragment() {
 
-    private lateinit var mbinding: FragmentHomeVendedorBinding
+    private lateinit var mBinding: FragmentHomeVendedorBinding
+
+    private val RC_GALERY=7
+    private val PATH_IMAGENES="iMAGENES"
+    private var mImageSeleccionarUri:Uri?=null
+
+    private lateinit var mStoreReference: StorageReference
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mbinding= FragmentHomeVendedorBinding.inflate(inflater, container, false)
-        return mbinding.root
+        auth= Firebase.auth
+        database=Firebase.database.reference
+        mBinding= FragmentHomeVendedorBinding.inflate(inflater, container, false)
+        leerDato()
+        return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
+    }
+
+    private fun leerDato() {
+        val userId = auth.currentUser?.uid.toString()
+        val dbpuesto=FirebaseDatabase.getInstance().reference.child("PuestoVenta").child("${userId}")
+        val recuperar=object :ValueEventListener{
+           override fun onDataChange(snapshot: DataSnapshot) {
+               snapshot.children.forEach {
+                   mBinding.MiPV.text=it.child("nombrePuesto").getValue().toString()
+               }
+           }
+
+           override fun onCancelled(error: DatabaseError) {
+               Log.d("Error",error.toString())
+           }
+
+       }
+        dbpuesto.addValueEventListener(recuperar)
+    }
+
+    private fun abrirGaleria() {
+        val intent=Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        Log.d("Ingresar","Abrir la Galeria")
+        startActivityForResult(intent,RC_GALERY)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("fuera del if 1","$resultCode")
+        if (resultCode == Activity.RESULT_OK){
+            Log.d("dentro del if1 pt1","$resultCode")
+            Log.d("dentro del if1 pt2","$RC_GALERY")
+            if (requestCode == RC_GALERY){
+                mImageSeleccionarUri = data?.data
+
+                Log.d("esto es antes del erro", mImageSeleccionarUri.toString())
+                mBinding.ImgTerreno.setImageURI(mImageSeleccionarUri)
+            }else{
+                Snackbar.make(mBinding.root, "Mensaje2", Snackbar.LENGTH_SHORT).show()
+            }
+        }else{
+            Snackbar.make(mBinding.root, "Mensaje1", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
 
 }
+
+
+
