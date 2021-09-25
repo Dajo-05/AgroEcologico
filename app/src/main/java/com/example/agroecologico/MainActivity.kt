@@ -50,12 +50,13 @@ class MainActivity : AppCompatActivity() {
      * */
 
     private fun CargarFragmento() {
-       /* val homeadminf = HomeAdminFragment()
+        /*val homeadminf = HomeAdminFragment()
         val fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction()
         val transicion = fragmentManager.beginTransaction()
         transicion.add(R.id.flMain,homeadminf)
         transicion.commit()*/
+
         fragmentManager = supportFragmentManager
         val homeVendedor = HomeVendedorFragment()
         val proVendedor = ProductosFragment()

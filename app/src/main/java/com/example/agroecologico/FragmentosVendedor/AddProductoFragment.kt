@@ -21,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 
 
-class AddProductoFragment : Fragment() {
+class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
 
     // identificar del inten
     private val RC_GALERY = 7
@@ -29,7 +29,10 @@ class AddProductoFragment : Fragment() {
 
     private lateinit var mBinding: FragmentAddProductoBinding
     private lateinit var database: DatabaseReference
+    // esta para obtener la direcion de la imagen
     private var mImageSeleccionarUri: Uri?=null
+    private lateinit var ite: ArrayAdapter<String>
+    private lateinit var unidaselect: String
 
 
     override fun onCreateView(
@@ -51,9 +54,17 @@ class AddProductoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
+        mBinding.btnProducto.setOnClickListener { GuardarDatos() }
 
     }
 
+    private fun GuardarDatos() {
+
+
+        Snackbar.make(mBinding.root, "Metodo de Guardar datos esta unidad ${unidaselect}", Snackbar.LENGTH_SHORT).show()
+
+    }
+// para abrir la galeria
     private fun abrirGaleria() {
         // creamos el intent para abrir la galeria
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -61,7 +72,7 @@ class AddProductoFragment : Fragment() {
         Log.d("ingresoro","abrior a la galeria")
         startActivityForResult(intent, RC_GALERY)
     }
-
+// cargar la imagen el en img view
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("fuerad el if 1","$resultCode")
@@ -98,8 +109,13 @@ class AddProductoFragment : Fragment() {
                   unidad.add(Uni)
               }
 
-              val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-              mBinding.atUnidadVenta.setAdapter(adapter)
+              ite = ArrayAdapter(requireContext(), R.layout.list_item, items)
+              with(mBinding.atUnidadVenta){
+                  setAdapter(ite)
+                  onItemClickListener = this@AddProductoFragment
+              }
+
+
 
 
           }
@@ -113,6 +129,12 @@ class AddProductoFragment : Fragment() {
 
 
 
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+     val item = parent?.getItemAtPosition(position).toString()
+        unidaselect = item.toString()
+        //Snackbar.make(mBinding.root, "Desplegable ${item.toString()}", Snackbar.LENGTH_SHORT).show()
     }
 
 
