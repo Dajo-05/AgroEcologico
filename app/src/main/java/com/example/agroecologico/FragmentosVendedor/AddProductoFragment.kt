@@ -15,10 +15,15 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.view.get
 import com.example.agroecologico.R
+import com.example.agroecologico.data.Producto
 import com.example.agroecologico.data.UnidadData
 import com.example.agroecologico.databinding.FragmentAddProductoBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
@@ -29,6 +34,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var mBinding: FragmentAddProductoBinding
     private lateinit var database: DatabaseReference
+    private lateinit var saveStorage: StorageReference
     // esta para obtener la direcion de la imagen
     private var mImageSeleccionarUri: Uri?=null
     private lateinit var ite: ArrayAdapter<String>
@@ -41,9 +47,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
     ): View? {
         // Inflate the layout for this fragment
         mBinding = FragmentAddProductoBinding.inflate(inflater,container, false)
-        /*val items = listOf("Material", "Design", "Components", "Android")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-        mBinding.atUnidadVenta.setAdapter(adapter)*/
+         database = Firebase.database.reference
 
 
         Datosslect()
@@ -55,13 +59,30 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
         mBinding.btnProducto.setOnClickListener { GuardarDatos() }
+        saveStorage = FirebaseStorage.getInstance().reference
+        database = FirebaseDatabase.getInstance().reference.child(PATH_IMAGENES)
 
     }
 
     private fun GuardarDatos() {
 
+        var patImg : String
+        val  save = saveStorage.child("JoanMarket")
+        val saveIma = save.child(mBinding.teNombreProducto.text.toString()+mImageSeleccionarUri!!.lastPathSegment)
+        saveIma.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
+            val url = HashMap<String,String>()
+            url["foto"] = java.lang.String.valueOf(it)
+            Log.d("Url de la imagen ", url["foto"].toString())
+            database.setValue(url)
+            Snackbar.make(mBinding.root, "${url.get("foto")}", Snackbar.LENGTH_SHORT).show()
+        }
+        /*val producto = Producto(nombreProducto = mBinding.teNombreProducto.text.toString()
+                                , precio = mBinding.tePrecioVenta.text.toString(),
+                                  cantidad = mBinding.teCantidad.text.toString(),
+                                    imagProducto = patImg)*/
 
-        Snackbar.make(mBinding.root, "Metodo de Guardar datos esta unidad ${unidaselect}", Snackbar.LENGTH_SHORT).show()
+
+
 
     }
 // para abrir la galeria
@@ -77,12 +98,10 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("fuerad el if 1","$resultCode")
         if (resultCode == Activity.RESULT_OK){
-            Log.d("dentro del if1 pt1","$resultCode")
-            Log.d("dentro del if1 pt2","$RC_GALERY")
+
             if (requestCode == RC_GALERY){
                 mImageSeleccionarUri = data?.data
-                // var datosImag = mImageSeleccionarUri
-                Log.d("esto es antes del erro", mImageSeleccionarUri.toString())
+
                 mBinding.ivPhoto.setImageURI(mImageSeleccionarUri)
             }else{
                 Snackbar.make(mBinding.root, "Mensaje2", Snackbar.LENGTH_SHORT).show()
