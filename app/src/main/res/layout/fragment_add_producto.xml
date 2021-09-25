@@ -133,25 +133,13 @@
         android:layout_height="wrap_content"
         android:text="Crear Producto"
         android:layout_marginTop="@dimen/marginTextTopTile"
-        android:layout_marginBottom="@dimen/marginTextTopTile"
+        android:layout_marginBottom="50dp"
         app:layout_constraintTop_toBottomOf="@+id/tiUnidadVenta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-    <TextView
-        android:id="@+id/tvprueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TextPruebaitem"
-        android:layout_marginTop="@dimen/marginTextTopTile"
-        android:layout_marginBottom="@dimen/marginTextTopTile"
-        android:hint="@string/TextPruebaitem"
-       app:layout_constraintTop_toBottomOf="@+id/btnProducto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        />
 
 
 
