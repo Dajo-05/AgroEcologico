@@ -8,11 +8,24 @@
     android:layout_height="wrap_content"
     android:fillViewport="true"
     >
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/marginTextTopTile"
     tools:context=".FragmentosVendedor.AddProductoFragment">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        style="?android:progressBarStyleHorizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
     <TextView
         android:id="@+id/tvTiruloProducto"

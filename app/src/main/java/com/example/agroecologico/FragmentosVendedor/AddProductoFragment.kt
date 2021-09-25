@@ -19,6 +19,7 @@ import com.example.agroecologico.data.Producto
 import com.example.agroecologico.data.UnidadData
 import com.example.agroecologico.databinding.FragmentAddProductoBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.*
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -39,6 +40,8 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
     private var mImageSeleccionarUri: Uri?=null
     private lateinit var ite: ArrayAdapter<String>
     private lateinit var unidaselect: String
+    private lateinit var negocio: String
+
 
 
     override fun onCreateView(
@@ -60,22 +63,59 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
         mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
         mBinding.btnProducto.setOnClickListener { GuardarDatos() }
         saveStorage = FirebaseStorage.getInstance().reference
-        database = FirebaseDatabase.getInstance().reference.child(PATH_IMAGENES)
+       // database = FirebaseDatabase.getInstance().reference.child(PATH_IMAGENES)
 
     }
 
     private fun GuardarDatos() {
+        val user = Firebase.auth.currentUser?.uid
+      mBinding.progressBar.visibility = View.VISIBLE
+        val query = FirebaseDatabase.getInstance().reference.child("PuestoVenta").child(user.toString())
+        val productocreado = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    negocio = it.child("nombrePuesto").getValue().toString()
+                }
+               if (mImageSeleccionarUri != null){
+                   val  save = saveStorage.child("${negocio}")
+                   val saveIma = save.child(mBinding.teNombreProducto.text.toString()+mImageSeleccionarUri!!.lastPathSegment)
+                   saveIma.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
+                       val progress  = (100* it.bytesTransferred / it.totalByteCount).toDouble()
+                       mBinding.progressBar.progress = progress.toInt()
+                       saveIma.downloadUrl.addOnSuccessListener {
+                           val producto = Producto(nombreProducto = mBinding.teNombreProducto.text.toString()
+                               , precio = mBinding.tePrecioVenta.text.toString(),
+                               cantidad = mBinding.teCantidad.text.toString(),
+                               imagProducto = it.toString())
+                           database.child("ProductosVenta").child(user.toString()).push().setValue(producto)
+                       }
+                   }
+                       .addOnCompleteListener {
+                           mBinding.progressBar.visibility = View.INVISIBLE
+                       }
+                       .addOnSuccessListener {
+                           Snackbar.make(mBinding.root, "se Subio Imagen", Snackbar.LENGTH_SHORT).show()
+                       }
+                       .addOnFailureListener {
+                           Snackbar.make(mBinding.root, "ocurrio un error al subir", Snackbar.LENGTH_SHORT).show()
+                       }
 
-        var patImg : String
-        val  save = saveStorage.child("JoanMarket")
-        val saveIma = save.child(mBinding.teNombreProducto.text.toString()+mImageSeleccionarUri!!.lastPathSegment)
-        saveIma.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
-            val url = HashMap<String,String>()
-            url["foto"] = java.lang.String.valueOf(it)
-            Log.d("Url de la imagen ", url["foto"].toString())
-            database.setValue(url)
-            Snackbar.make(mBinding.root, "${url.get("foto")}", Snackbar.LENGTH_SHORT).show()
+               }
+
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Elemto select", error.toString())
+            }
+
         }
+
+        query.addValueEventListener(productocreado)
+
+
+
         /*val producto = Producto(nombreProducto = mBinding.teNombreProducto.text.toString()
                                 , precio = mBinding.tePrecioVenta.text.toString(),
                                   cantidad = mBinding.teCantidad.text.toString(),
