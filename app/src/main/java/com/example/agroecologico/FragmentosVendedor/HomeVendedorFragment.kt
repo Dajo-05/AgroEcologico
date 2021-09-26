@@ -1,6 +1,7 @@
 package com.example.agroecologico.FragmentosVendedor
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.agroecologico.databinding.FragmentHomeVendedorBinding
+import com.example.pruebaapp.data.PuestoVentaData
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -30,6 +32,8 @@ class HomeVendedorFragment : Fragment() {
     private lateinit var mStoreReference: StorageReference
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var usuario: PuestoVentaData
+
 
 
     override fun onCreateView(
@@ -40,23 +44,42 @@ class HomeVendedorFragment : Fragment() {
         auth= Firebase.auth
         database=Firebase.database.reference
         mBinding= FragmentHomeVendedorBinding.inflate(inflater, container, false)
-        leerDato()
+
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
+
+        leerDato()
+
+        mBinding.BtnModPV.setOnClickListener {
+            modificar()}
+    }
+
+    private fun modificar() {
+        usuario.nombrePuesto = mBinding.edtNombrePV.text.toString()
+        database.child("PuestoVenta").child("${usuario.idpuesto}").setValue(usuario)
+        leerDato()
     }
 
     private fun leerDato() {
         val userId = auth.currentUser?.uid.toString()
-        val dbpuesto=FirebaseDatabase.getInstance().reference.child("PuestoVenta").child("${userId}")
+        val dbpuesto=FirebaseDatabase.getInstance().reference.child("PuestoVenta")
         val recuperar=object :ValueEventListener{
            override fun onDataChange(snapshot: DataSnapshot) {
                snapshot.children.forEach {
                    mBinding.MiPV.text=it.child("nombrePuesto").getValue().toString()
+                   usuario= PuestoVentaData(idpuesto = it.child("idpuesto").getValue().toString()
+                       , nombrePuesto =  it.child("nombrePuesto").getValue().toString(),
+                        telefono =  it.child("telefono").getValue().toString(),
+                        correo =  it.child("correo").getValue().toString(),
+                        whatsapp= it.child("whatsapp").getValue().toString(),
+                        telegran =  it.child("telegram").getValue().toString(),
+                        foto =  it.child("foto").getValue().toString())
                }
+               //Log.d("Datos leidos","${usuario}")
            }
 
            override fun onCancelled(error: DatabaseError) {
