@@ -19,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class HomeVendedorFragment : Fragment() {
@@ -51,7 +52,7 @@ class HomeVendedorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.btnSeleccinar.setOnClickListener { abrirGaleria() }
-
+        mStoreReference= FirebaseStorage.getInstance().reference
         leerDato()
 
         mBinding.BtnModPV.setOnClickListener {
@@ -59,9 +60,46 @@ class HomeVendedorFragment : Fragment() {
     }
 
     private fun modificar() {
-        usuario.nombrePuesto = mBinding.edtNombrePV.text.toString()
-        database.child("PuestoVenta").child("${usuario.idpuesto}").setValue(usuario)
-        leerDato()
+        val negocio = mBinding.edtNombrePV.text.toString()
+
+
+        if (mImageSeleccionarUri != null && negocio.isNotEmpty()){
+            val save = mStoreReference.child(usuario.nombrePuesto)
+            val asignar = save.child(usuario.nombrePuesto+mImageSeleccionarUri!!.lastPathSegment)
+            asignar.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
+                asignar.downloadUrl.addOnSuccessListener {
+                    val urlImagen = it.toString()
+                    usuario.foto = urlImagen
+                    usuario.nombrePuesto = negocio
+                    database.child("PuestoVenta").child("${usuario.idpuesto}").setValue(usuario)
+                }
+
+            }
+            Snackbar.make(mBinding.root, "Se Edito foto y nombre del puesto", Snackbar.LENGTH_SHORT).show()
+
+        }else if (mImageSeleccionarUri == null && negocio.isNotEmpty()){
+            usuario.nombrePuesto = negocio
+            database.child("PuestoVenta").child("${usuario.idpuesto}").setValue(usuario)
+            Snackbar.make(mBinding.root, "Se Edito nombre del puesto", Snackbar.LENGTH_SHORT).show()
+
+        }else if (mImageSeleccionarUri != null && !negocio.isNotEmpty()){
+            val save = mStoreReference.child(usuario.nombrePuesto)
+            val asignar = save.child(usuario.nombrePuesto+mImageSeleccionarUri!!.lastPathSegment)
+            asignar.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
+                asignar.downloadUrl.addOnSuccessListener {
+                    val urlImagen = it.toString()
+                    usuario.foto = urlImagen
+                    database.child("PuestoVenta").child("${usuario.idpuesto}").setValue(usuario)
+                }
+
+            }
+            Snackbar.make(mBinding.root, "Se Edito foto del puesto", Snackbar.LENGTH_SHORT).show()
+
+        }else{
+            Snackbar.make(mBinding.root, "Por favor seleccione una imagen o escriba el nombre del puesto", Snackbar.LENGTH_SHORT).show()
+        }
+
+        //leerDato()
     }
 
     private fun leerDato() {
