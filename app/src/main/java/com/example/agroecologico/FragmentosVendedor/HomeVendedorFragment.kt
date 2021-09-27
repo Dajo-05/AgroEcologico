@@ -78,12 +78,20 @@ class HomeVendedorFragment : Fragment() {
                         imgVendedor1 = it.child("imgVendedor1").getValue().toString())
                 }
                 mBinding.MiPV.text.toString()
-                //Glide.with(context!!).load(usuario.foto).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(mBinding.ImgTerreno)
-                //Glide.with(context!!).load(usuario.imgVendedor1).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(mBinding.Vendedor2)
-                Picasso.get()
-                    .load(usuario.foto)
-                    .fit()
+                Glide.with(this@HomeVendedorFragment)
+                    .load("${usuario.foto}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .into(mBinding.ImgTerreno)
+                Glide.with(context!!)
+                    .load(usuario.imgVendedor1)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .into(mBinding.Vendedor2)
+               /* Picasso.get()
+                    .load("gs://agroecologico-46042.appspot.com/defaulf/avatar.jpg")
+                    .fit()
+                    .into(mBinding.ImgTerreno)*/
                 mBinding.progressBar.visibility= View.GONE
                 //Log.d("Datos leidos","${usuario}")
             }
