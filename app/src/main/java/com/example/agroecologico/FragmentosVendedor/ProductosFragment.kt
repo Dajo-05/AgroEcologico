@@ -9,6 +9,7 @@ import com.example.agroecologico.R
 import com.example.agroecologico.databinding.FragmentProductosBinding
 import com.example.agroecologico.fragmento.PvAdminFragment
 import com.example.agroecologico.fragmento.UnidadvAdminFragment
+import com.google.android.material.snackbar.Snackbar
 
 
 class ProductosFragment : Fragment() {
@@ -37,15 +38,16 @@ class ProductosFragment : Fragment() {
             val fragmentoAdd = AddProductoFragment()
             val transacion = fragmentManager?.beginTransaction()
             transacion?.replace(R.id.flMain, fragmentoAdd)
-                ?.addToBackStack("ProductosFragment")
+                ?.addToBackStack(null)
                 ?.commit()
         } else if (i == 2) {
 
-            val fragmentoListado = ListaProductoFragment()
+           /* val fragmentoListado = ListaProductoFragment()
             val transacion = fragmentManager?.beginTransaction()
             transacion?.replace(R.id.flMain, fragmentoListado)
                 ?.addToBackStack(null)
-                ?.commit()
+                ?.commit()*/
+            Snackbar.make(mBinding.root, "opcion no disponible por el momento", Snackbar.LENGTH_SHORT).show()
 
         }
 

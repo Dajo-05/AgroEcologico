@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:fillViewport="true"
     >
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:id="@+id/tvTiruloProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/TextPruebaitem"
+        android:text="Creación de Producto"
         android:layout_marginTop="@dimen/marginTextTopTile"
         android:textAppearance="?attr/textAppearanceHeadline5"
         app:layout_constraintTop_toTopOf="parent"
@@ -109,7 +110,7 @@
         android:id="@+id/tiUnidadVenta"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="@string/TextPruebaitem"
+        android:hint="Selecione Unidad"
        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_marginTop="@dimen/marginTextTopTile"
         android:layout_marginStart="@dimen/cardimgAncho"
@@ -141,10 +142,23 @@
         />
 
 
+    <ProgressBar
+        android:id="@+id/progressBar_crearProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-
-
+    <TextView
+        android:id="@+id/tvcarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/TextPruebaitem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
