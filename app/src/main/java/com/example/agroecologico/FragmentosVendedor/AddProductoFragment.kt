@@ -69,37 +69,54 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private fun GuardarDatos() {
         val user = Firebase.auth.currentUser?.uid
-      mBinding.progressBar.visibility = View.VISIBLE
-        val query = FirebaseDatabase.getInstance().reference.child("PuestoVenta").child(user.toString())
+       mBinding.progressBarCrearProducto.visibility = View.VISIBLE
+        val nproducto = mBinding.teNombreProducto.text
+         val preciov = mBinding.tePrecioVenta.text
+        val canti = mBinding.teCantidad.text
+
+        val query = FirebaseDatabase.getInstance().reference.child("PuestoVenta")
+
         val productocreado = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 snapshot.children.forEach {
                     negocio = it.child("nombrePuesto").getValue().toString()
                 }
-               if (mImageSeleccionarUri != null){
+
+               if (mImageSeleccionarUri != null && !nproducto.isNullOrEmpty() && !preciov.isNullOrEmpty() && !canti.isNullOrEmpty() &&  unidaselect.isNotEmpty()){
                    val  save = saveStorage.child("${negocio}")
                    val saveIma = save.child(mBinding.teNombreProducto.text.toString()+mImageSeleccionarUri!!.lastPathSegment)
                    saveIma.putFile(mImageSeleccionarUri!!).addOnSuccessListener {
+
                        val progress  = (100* it.bytesTransferred / it.totalByteCount).toDouble()
-                       mBinding.progressBar.progress = progress.toInt()
+                       mBinding.progressBarCrearProducto.progress = progress.toInt()
+                       mBinding.tvcarga.text = "$progress"
                        saveIma.downloadUrl.addOnSuccessListener {
                            val producto = Producto(nombreProducto = mBinding.teNombreProducto.text.toString()
                                , precio = mBinding.tePrecioVenta.text.toString(),
                                cantidad = mBinding.teCantidad.text.toString(),
-                               imagProducto = it.toString())
+                               imagProducto = it.toString(), unidad = unidaselect)
                            database.child("ProductosVenta").child(user.toString()).push().setValue(producto)
                        }
                    }
                        .addOnCompleteListener {
-                           mBinding.progressBar.visibility = View.INVISIBLE
+                           mBinding.progressBarCrearProducto.visibility = View.GONE
                        }
                        .addOnSuccessListener {
-                           Snackbar.make(mBinding.root, "se Subio Imagen", Snackbar.LENGTH_SHORT).show()
+                           Snackbar.make(mBinding.root, "Se creo el producto con exito", Snackbar.LENGTH_SHORT).show()
+                           mBinding.progressBarCrearProducto.visibility = View.GONE
+                           val fragmentoAdd = ProductosFragment()
+                           val transacion = fragmentManager?.beginTransaction()
+                           transacion?.replace(R.id.flMain, fragmentoAdd)
+                               ?.addToBackStack(null)
+                               ?.commit()
                        }
                        .addOnFailureListener {
                            Snackbar.make(mBinding.root, "ocurrio un error al subir", Snackbar.LENGTH_SHORT).show()
                        }
 
+               }else{
+                   mBinding.progressBarCrearProducto.visibility = View.GONE
+                   Snackbar.make(mBinding.root, "Debe llenar todos los campos", Snackbar.LENGTH_SHORT).show()
                }
 
 
@@ -114,17 +131,8 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
 
         query.addValueEventListener(productocreado)
 
-
-
-        /*val producto = Producto(nombreProducto = mBinding.teNombreProducto.text.toString()
-                                , precio = mBinding.tePrecioVenta.text.toString(),
-                                  cantidad = mBinding.teCantidad.text.toString(),
-                                    imagProducto = patImg)*/
-
-
-
-
     }
+
 // para abrir la galeria
     private fun abrirGaleria() {
         // creamos el intent para abrir la galeria
@@ -133,6 +141,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
         Log.d("ingresoro","abrior a la galeria")
         startActivityForResult(intent, RC_GALERY)
     }
+
 // cargar la imagen el en img view
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -153,6 +162,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
 
 
     private fun Datosslect() {
+        mBinding.progressBarCrearProducto.visibility = View.VISIBLE
         val query = FirebaseDatabase.getInstance().reference.child("UnidadVenta")
         val unidad = mutableListOf<UnidadData>()
         var items = arrayListOf<String>()
@@ -172,6 +182,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
               with(mBinding.atUnidadVenta){
                   setAdapter(ite)
                   onItemClickListener = this@AddProductoFragment
+                  mBinding.progressBarCrearProducto.visibility = View.GONE
               }
 
 

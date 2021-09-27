@@ -100,7 +100,7 @@ class PvAdminFragment : Fragment() {
                 val venta =  PuestoVentaData(idpuesto = userId, nombrePuesto = puesto, telefono = user.telefono,
                                               correo = user.correo, whatsapp = user.telefono, telegran = user.telefono)
                 database.child("Usuarios").child(userId).setValue(user)
-                database.child("PuestoVenta").child("${userId}").child(puesto).setValue(venta)
+                database.child("PuestoVenta").child("${userId}").setValue(venta)
 
             } else {
 
