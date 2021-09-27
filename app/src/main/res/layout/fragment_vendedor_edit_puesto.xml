@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentosVendedor.VendedorEditPuestoFragment">
+
+    <TextView
+        android:id="@+id/EditPuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ediccion de puesto"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiNomPuesto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre Puesto"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/marginTopEditTxt"
+        android:layout_marginStart="@dimen/cardimgAncho"
+        android:layout_marginEnd="@dimen/cardimgAncho"
+        app:layout_constraintTop_toBottomOf="@+id/EditPuesto"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teNomPuesto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/SelectImgTerreno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Seleccione Foto del terreno"
+        app:layout_constraintBottom_toTopOf="@+id/ImgTerreno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiNomPuesto" />
+
+
+
+    <ImageView
+        android:id="@+id/ImgTerreno"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_weight="1"
+        android:src="@drawable/ic_add_box"
+        android:layout_marginTop="@dimen/marginTopEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SelectImgTerreno" />
+
+    <ImageButton
+        android:id="@+id/btnSeleccinar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/ImgTerreno"
+        app:layout_constraintEnd_toEndOf="@+id/ImgTerreno"
+        app:layout_constraintStart_toStartOf="@+id/ImgTerreno"
+        app:layout_constraintTop_toTopOf="@+id/ImgTerreno"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/Vendedored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Vendedores del Puesto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImgTerreno" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tivendedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre Vendedor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/marginTopEditTxt"
+        android:layout_marginStart="@dimen/cardimgAncho"
+        android:layout_marginEnd="@dimen/cardimgAncho"
+        app:layout_constraintTop_toBottomOf="@+id/Vendedored"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tevendedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ImageView
+        android:id="@+id/ImgVendedro"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_weight="1"
+        android:src="@drawable/ic_add_box"
+        android:layout_marginTop="@dimen/marginTopEditTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tivendedor" />
+
+    <ImageButton
+        android:id="@+id/btnSeleccinar2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/ImgVendedro"
+        app:layout_constraintEnd_toEndOf="@+id/ImgVendedro"
+        app:layout_constraintStart_toStartOf="@+id/ImgVendedro"
+        app:layout_constraintTop_toTopOf="@+id/ImgVendedro"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/BtnModPV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeleccinar2"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
