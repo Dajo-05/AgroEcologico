@@ -42,12 +42,12 @@ class ProductosFragment : Fragment() {
                 ?.commit()
         } else if (i == 2) {
 
-           /* val fragmentoListado = ListaProductoFragment()
+            val fragmentoListado = ListaProductoFragment()
             val transacion = fragmentManager?.beginTransaction()
             transacion?.replace(R.id.flMain, fragmentoListado)
                 ?.addToBackStack(null)
-                ?.commit()*/
-            Snackbar.make(mBinding.root, "opcion no disponible por el momento", Snackbar.LENGTH_SHORT).show()
+                ?.commit()
+           // Snackbar.make(mBinding.root, "opcion no disponible por el momento", Snackbar.LENGTH_SHORT).show()
 
         }
 

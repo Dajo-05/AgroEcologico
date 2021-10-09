@@ -111,7 +111,7 @@ class AddProductoFragment : Fragment(), AdapterView.OnItemClickListener {
                                ?.commit()
                        }
                        .addOnFailureListener {
-                           Snackbar.make(mBinding.root, "ocurrio un error al subir", Snackbar.LENGTH_SHORT).show()
+                           Snackbar.make(mBinding.root, "ocurrio un error aval l subir", Snackbar.LENGTH_SHORT).show()
                        }
 
                }else{

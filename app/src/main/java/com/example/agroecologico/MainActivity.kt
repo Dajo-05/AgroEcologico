@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.agroecologico.FragmentosVendedor.HomeVendedorFragment
+import com.example.agroecologico.FragmentosVendedor.ListaPedidosFragment
 import com.example.agroecologico.FragmentosVendedor.ListaProductoFragment
 import com.example.agroecologico.FragmentosVendedor.ProductosFragment
 import com.example.agroecologico.databinding.ActivityMainBinding
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         fragmentManager = supportFragmentManager
         val homeVendedor = HomeVendedorFragment()
         val proVendedor = ProductosFragment()
+        val pedido = ListaPedidosFragment()
 
 
         fragmentoActivo = homeVendedor
@@ -72,6 +74,12 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.flMain, proVendedor)
             .hide(proVendedor)
             .commit()
+
+        fragmentManager.beginTransaction()
+            .add(R.id.flMain, pedido)
+            .hide(pedido)
+            .commit()
+
         /* @barra_navegacion*/
         vincular.btnNav.setOnNavigationItemReselectedListener { item ->
             when(item.itemId) {
@@ -92,8 +100,13 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.pedidos -> {
+                    fragmentManager.beginTransaction()
+                        .hide(fragmentoActivo)
+                        .show(pedido)
+                        .commit()
+                    fragmentoActivo = pedido
 
-                    Snackbar.make(vincular.root, "Opcion no disponible en el momento", Snackbar.LENGTH_SHORT).show()
+                   // Snackbar.make(vincular.root, "Opcion no disponible en el momento", Snackbar.LENGTH_SHORT).show()
 
                 }
 
