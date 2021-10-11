@@ -119,7 +119,6 @@ class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
 
     fun VerDetalle(posicion: Int){
         var bundle  = Bundle()
-        Snackbar.make(mBinding.root, "Ingreso pedido: #${posicion}", Snackbar.LENGTH_SHORT).show()
        bundle.putParcelable("pedido", listaDePedidos[posicion])
         val fragmentoListado = DetallePedidoFragment()
         val transacion = fragmentManager?.beginTransaction()
