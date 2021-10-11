@@ -16,6 +16,7 @@ import com.example.agroecologico.data.Producto
 import com.example.agroecologico.data.ProductoComprado
 import com.example.agroecologico.databinding.FragmentListaPedidosBinding
 import com.example.agroecologico.databinding.FragmentListaProductoBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -23,14 +24,16 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
-class ListaPedidosFragment : Fragment() {
+class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
 
     private lateinit var mBinding: FragmentListaPedidosBinding
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
     private lateinit var database: DatabaseReference
-    private lateinit var auth: FirebaseAuth
+   // private lateinit var auth: FirebaseAuth
     private lateinit var adaptador: PedidosAdapter
     private lateinit var listaDePedidos: MutableList<Pedidos>
+    private  var itemRV: Int  = 0
+
 
 
     override fun onCreateView(
@@ -45,6 +48,11 @@ class ListaPedidosFragment : Fragment() {
         leerDato()
 
         return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun leerDato() {
@@ -79,7 +87,17 @@ class ListaPedidosFragment : Fragment() {
                     }
 
                 }
-                Log.d("pedido", "${listaDePedidos}")
+
+                adaptador = PedidosAdapter(listaDePedidos,this@ListaPedidosFragment)
+
+                mLayoutManager = LinearLayoutManager(context)
+
+                mBinding.rvPedido.apply {
+                    layoutManager = mLayoutManager
+                    adapter = adaptador
+
+                }
+                       Log.d("pedido", "${listaDePedidos}")
 
             }
 
@@ -92,4 +110,24 @@ class ListaPedidosFragment : Fragment() {
         datos.addValueEventListener(recuperar)
 
     }
+
+    override fun onItemClik(position: Int) {
+        Log.d("pedido", "${listaDePedidos[position]}")
+         itemRV = position
+        VerDetalle(itemRV)
+    }
+
+    fun VerDetalle(posicion: Int){
+        var bundle  = Bundle()
+        Snackbar.make(mBinding.root, "Ingreso pedido: #${posicion}", Snackbar.LENGTH_SHORT).show()
+       bundle.putParcelable("pedido", listaDePedidos[posicion])
+        val fragmentoListado = DetallePedidoFragment()
+        val transacion = fragmentManager?.beginTransaction()
+        fragmentoListado.arguments = bundle
+        transacion?.replace(R.id.flMain, fragmentoListado)
+            ?.addToBackStack(null)
+            ?.commit()
+
+    }
+
 }

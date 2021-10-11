@@ -1,14 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentosVendedor.DetallePedidoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvprueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/TextPruebaitem"
+        android:gravity="center_horizontal"
+        android:textAppearance="?attr/textAppearanceBody2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
-</FrameLayout>
+    <!---LinearLayout
+        android:id="@+id/LyTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/marginTextTopTile"
+        android:paddingBottom="@dimen/marginTextTopTile"
+        >
+        <TextView
+            android:id="@+id/tvTituloDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextPruebaitem"
+            android:gravity="center_horizontal"
+            android:textAppearance="?attr/textAppearanceBody2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvClienteoDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvCoreoDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvDirDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrega:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvEntregaDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="9dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefono:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvtelDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total:"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <TextView
+                android:id="@+id/tvTotalDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextPruebaitem"
+                android:gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDetallePedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_detalle_pedido"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/LyTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/marginTextTopTile"
+        >
+
+
+    </androidx.recyclerview.widget.RecyclerView!-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
