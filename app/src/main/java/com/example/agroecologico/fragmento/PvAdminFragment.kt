@@ -48,7 +48,7 @@ class PvAdminFragment : Fragment() {
             mBinding.btnGuardarNegocio.setOnClickListener {
                 var puesto = mBinding.tepuesto1.text.toString()
                 val user = UsuarioData(nombres = mBinding.tenombre1.text.toString(),docuemnto = mBinding.tedocumento1.text.toString(),
-                    correo = mBinding.teEmail1.text.toString(),telefono =  mBinding.teTelefono1.text.toString(),
+                    correo = mBinding.teEmail1.text.toString(),rol = "Vendedor", telefono =  mBinding.teTelefono1.text.toString(),
                     whatsapp = mBinding.teTelefono1.text.toString(), telegran = mBinding.teTelefono1.text.toString())
 
                 var permiso = VerificarDatos(user, puesto)
