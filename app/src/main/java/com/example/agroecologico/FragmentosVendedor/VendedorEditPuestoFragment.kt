@@ -67,23 +67,20 @@ class VendedorEditPuestoFragment : Fragment() {
     private fun leerDato() {
         val userId = auth.currentUser?.uid.toString()
         mBinding.progressBar2.visibility= View.VISIBLE
-        val dbpuesto= FirebaseDatabase.getInstance().reference.child("PuestoVenta")
+        val dbpuesto= FirebaseDatabase.getInstance().getReference("PuestoVenta")
         val recuperar=object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach {
-
-                    usuario= PuestoVentaData(
-                        idpuesto = it.child("idpuesto").getValue().toString(),
-                        nombrePuesto =  it.child("nombrePuesto").getValue().toString(),
-                        telefono =  it.child("telefono").getValue().toString(),
-                        correo =  it.child("correo").getValue().toString(),
-                        whatsapp= it.child("whatsapp").getValue().toString(),
-                        telegran =  it.child("telegram").getValue().toString(),
-                        foto =  it.child("foto").getValue().toString(),
-                        vendedor1 = it.child("vendedor1").getValue().toString(),
-                        imgVendedor1 = it.child("imgVendedor1").getValue().toString())
-
-
+                if (snapshot.exists()){
+                    usuario = PuestoVentaData( idpuesto = snapshot.child("${userId}").child("idpuesto").getValue().toString(),
+                        nombrePuesto = snapshot.child("${userId}").child("nombrePuesto").getValue().toString(),
+                        telefono = snapshot.child("${userId}").child("telefono").getValue().toString(),
+                        correo = snapshot.child("${userId}").child("correo").getValue().toString(),
+                        whatsapp = snapshot.child("${userId}").child("whatsapp").getValue().toString(),
+                        telegran = snapshot.child("${userId}").child("whatsapp").getValue().toString(),
+                        foto = snapshot.child("${userId}").child("foto").getValue().toString(),
+                        vendedor1 = snapshot.child("${userId}").child("vendedor1").getValue().toString(),
+                        imgVendedor1 = snapshot.child("${userId}").child("imgVendedor1").getValue().toString()
+                    )
                 }
                 mBinding.teNomPuesto.setText(usuario.nombrePuesto)
                 mBinding.tevendedor.setText(usuario.vendedor1)

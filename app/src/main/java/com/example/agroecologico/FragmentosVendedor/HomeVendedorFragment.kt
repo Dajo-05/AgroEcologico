@@ -62,11 +62,47 @@ class HomeVendedorFragment : Fragment() {
     private fun leerDato() {
         val userId = auth.currentUser?.uid.toString()
         mBinding.progressBar.visibility= View.VISIBLE
-        val dbpuesto= FirebaseDatabase.getInstance().reference.child("PuestoVenta")
+        val dbpuesto= FirebaseDatabase.getInstance().getReference("PuestoVenta")
         val recuperar=object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach {
-                    mBinding.MiPV.text=it.child("nombrePuesto").getValue().toString()
+                if (snapshot.exists()){
+                    usuario = PuestoVentaData( idpuesto = snapshot.child("${userId}").child("idpuesto").getValue().toString(),
+                        nombrePuesto = snapshot.child("${userId}").child("nombrePuesto").getValue().toString(),
+                        telefono = snapshot.child("${userId}").child("telefono").getValue().toString(),
+                        correo = snapshot.child("${userId}").child("correo").getValue().toString(),
+                        whatsapp = snapshot.child("${userId}").child("whatsapp").getValue().toString(),
+                        telegran = snapshot.child("${userId}").child("whatsapp").getValue().toString(),
+                        foto = snapshot.child("${userId}").child("foto").getValue().toString(),
+                        vendedor1 = snapshot.child("${userId}").child("vendedor1").getValue().toString(),
+                        imgVendedor1 = snapshot.child("${userId}").child("imgVendedor1").getValue().toString()
+                    )
+                    mBinding.MiPV.text = usuario.nombrePuesto
+
+                }
+                mBinding.progressBar.visibility= View.GONE
+                Glide.with(this@HomeVendedorFragment)
+                    .load("${usuario.foto}")
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .into(mBinding.ImgTerreno)
+                Glide.with(context!!)
+                    .load(usuario.imgVendedor1)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .into(mBinding.Vendedor2)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Error",error.toString())
+            }
+
+        }
+        dbpuesto.addValueEventListener(recuperar)
+    }
+
+/*
+*  mBinding.MiPV.text=it.child("nombrePuesto").getValue().toString()
                     usuario= PuestoVentaData(idpuesto = it.child("idpuesto").getValue().toString()
                         , nombrePuesto =  it.child("nombrePuesto").getValue().toString(),
                         telefono =  it.child("telefono").getValue().toString(),
@@ -76,8 +112,8 @@ class HomeVendedorFragment : Fragment() {
                         foto =  it.child("foto").getValue().toString(),
                         vendedor1 = it.child("vendedor1").getValue().toString(),
                         imgVendedor1 = it.child("imgVendedor1").getValue().toString())
-                }
-                mBinding.MiPV.text.toString()
+*
+*   mBinding.MiPV.text.toString()
                 Glide.with(this@HomeVendedorFragment)
                     .load("${usuario.foto}")
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -94,17 +130,7 @@ class HomeVendedorFragment : Fragment() {
                     .into(mBinding.ImgTerreno)*/
                 mBinding.progressBar.visibility= View.GONE
                 //Log.d("Datos leidos","${usuario}")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("Error",error.toString())
-            }
-
-        }
-        dbpuesto.addValueEventListener(recuperar)
-    }
-
-
+* */
     private fun modificar() {
         val editar = VendedorEditPuestoFragment()
         val transacion = fragmentManager?.beginTransaction()
