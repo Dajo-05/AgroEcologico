@@ -102,7 +102,7 @@ class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.d("Error pedido", "${error}")
             }
 
 
