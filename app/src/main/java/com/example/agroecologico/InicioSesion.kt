@@ -11,8 +11,6 @@ import androidx.fragment.app.FragmentManager
 import com.example.agroecologico.FragmentoComprador.RegistroCompradorFragment
 import com.example.agroecologico.databinding.ActivityInicioSesionBinding
 import com.example.agroecologico.fragmento.PvAdminFragment
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -60,7 +58,7 @@ class InicioSesion: AppCompatActivity() {
 
         }
 
-        vincular.FacebookBtn.setOnClickListener {
+        vincular.FaceBookBtn.setOnClickListener {
             Snackbar.make(vincular.root, "La opcion no se encuentra disponible por el momento", Snackbar.LENGTH_SHORT).show()
 
         }
