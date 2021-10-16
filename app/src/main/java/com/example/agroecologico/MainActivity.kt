@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.agroecologico.FragmentoComprador.RegistroCompradorFragment
 import com.example.agroecologico.FragmentosVendedor.HomeVendedorFragment
 import com.example.agroecologico.FragmentosVendedor.ListaPedidosFragment
 import com.example.agroecologico.FragmentosVendedor.ListaProductoFragment
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vincular: ActivityMainBinding
     private  lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentoActivo: Fragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 
 
         fragmentoActivo = homeVendedor
+
 
         fragmentManager.beginTransaction()
             .add(R.id.flMain, homeVendedor)

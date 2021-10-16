@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">AgroEcologico</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+
+
+    <string name="registrar"><u>Ingresa para Registrarse</u></string>
     <string name="title_active_login">Loguin</string>
     <string name="password">Contraseña</string>
     <string name="email">Correo</string>
