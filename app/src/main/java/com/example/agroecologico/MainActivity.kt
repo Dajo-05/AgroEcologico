@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         //Vincula el usuario a Firebase
         usuario = Firebase.auth
 
-
-
         CargarFragmento()
 
     }
