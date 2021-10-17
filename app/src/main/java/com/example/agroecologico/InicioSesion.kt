@@ -33,7 +33,7 @@ class InicioSesion: AppCompatActivity() {
     private  lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentoActivo: Fragment
 
-    private lateinit var googleSignInClient: GoogleSignInClient
+   // private lateinit var googleSignInClient: GoogleSignInClient
 
 
 
@@ -67,12 +67,12 @@ class InicioSesion: AppCompatActivity() {
 
         }
         // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+     /*   val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        googleSignInClient = GoogleSignIn.getClient(this, gso)*/
         // [END config_signin]
 
         vincular.GoogleBtn.setOnClickListener {
@@ -94,7 +94,7 @@ class InicioSesion: AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        /* Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == 9001) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -104,16 +104,15 @@ class InicioSesion: AppCompatActivity() {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Error", "Google sign in failed", e)
             }
-        }
+        }*/
     }
 
-    // [START signin]
+    /* [START signin]
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, 9001)
     }
-    // [END signin]
-
+    */
 
     private fun registro(){
         vincular.linearLayout.visibility = View.GONE
