@@ -10,11 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.agroecologico.FragmentoComprador.RegistroCompradorFragment
 import com.example.agroecologico.databinding.ActivityInicioSesionBinding
-import com.example.agroecologico.fragmento.PvAdminFragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlin.math.sign
 
 class InicioSesion: AppCompatActivity() {
 
@@ -23,6 +28,8 @@ class InicioSesion: AppCompatActivity() {
 
     private  lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentoActivo: Fragment
+
+    private lateinit var googleSignInClient: GoogleSignInClient
 
 
 
@@ -47,15 +54,25 @@ class InicioSesion: AppCompatActivity() {
             }
         }
 
+
+
         vincular.registrar.setOnClickListener {
             registro()
             //Snackbar.make(vincular.root, "La opcion no se encuentra disponible por el momento", Snackbar.LENGTH_SHORT).show()
 
         }
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        // [END config_signin]
 
         vincular.GoogleBtn.setOnClickListener {
+            //signIn()
             Snackbar.make(vincular.root, "La opcion no se encuentra disponible por el momento", Snackbar.LENGTH_SHORT).show()
-
         }
 
         vincular.FaceBookBtn.setOnClickListener {
@@ -64,7 +81,34 @@ class InicioSesion: AppCompatActivity() {
         }
 
 
+
+
     }
+
+    // [START onactivityresult]
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == 9001) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("Error", "Google sign in failed", e)
+            }
+        }
+    }
+
+    // [START signin]
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, 9001)
+    }
+    // [END signin]
+
 
     private fun registro(){
         vincular.linearLayout.visibility = View.GONE
@@ -85,6 +129,7 @@ class InicioSesion: AppCompatActivity() {
         val currentUser = usuario.currentUser
         if(currentUser != null){
             redireccionar();
+
         }
     }
 
@@ -97,6 +142,7 @@ class InicioSesion: AppCompatActivity() {
                     // Si es correcto el los datos ingresados inicia seccion
                     Log.d("TAG", "signInWithEmail:success")
                     redireccionar()
+
                 } else {
                     //si los datos ingresados son incorectos muestra un mensaje
                     Log.w("TAG", "signInWithEmail:failure", task.exception)
