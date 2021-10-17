@@ -32,5 +32,9 @@
     <string name="textHome">Inico</string>
     <string name="textProducto">Productos</string>
     <string name="textPedidos">Pedidos</string>
-
+    <string name="TextBienvenida">Bienvenido</string>
+    <string name="TextDtPernalesConpra">Cliente:</string>
+    <string name="TextDtPernalesCorreo">Correo:</string>
+    <string name="TextDtPernalesDir">Dirección:</string>
+    <string name="TextDtPernalesTel">Teléfono:</string>
 </resources>

@@ -6,7 +6,7 @@
     <item
         android:id="@+id/pedidos"
         android:title="@string/textPedidos"
-        android:icon="@drawable/ic_pedido_blanco"
+        android:icon="@drawable/ic_car_shopin_blanco"
         app:showAsAction="never"
         />
 
@@ -14,14 +14,13 @@
         android:id="@+id/home_vendedor"
         android:title="@string/textHome"
         app:showAsAction="never"
-
-        android:icon="@drawable/ic_store_blanco"
+        android:icon="@drawable/ic_blanco_home_24"
         />
     <item
         android:id="@+id/producto"
         android:title="@string/textProducto"
         app:showAsAction="never"
-        android:icon="@drawable/ic_producto_blanco"
+        android:icon="@drawable/ic_blanca_shopping_basket_24"
         />
 
 
