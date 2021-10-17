@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.agroecologico.FragmentoComprador.RegistroCompradorFragment
 import com.example.agroecologico.FragmentoComprador.CarritoCompraFragment
 import com.example.agroecologico.FragmentoComprador.HomeCompradorFragment
 import com.example.agroecologico.FragmentoComprador.ListaNegociosCompradorFragment
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentoActivo: Fragment
     private lateinit var database: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,6 +138,7 @@ class MainActivity : AppCompatActivity() {
 
 
         fragmentoActivo = homeVendedor
+
 
         fragmentManager.beginTransaction()
             .add(R.id.flMain, homeVendedor)

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".InicioSesion">
 
+    <FrameLayout
+        android:id="@+id/flregistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -47,10 +55,12 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         //campo para ingresar el correo electronico
+
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
@@ -69,6 +79,7 @@
 
 
         //Campo para ingresar contraseña
+
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
@@ -86,13 +97,44 @@
             android:inputType="textPassword"
             android:padding="16dp" />
 
+        <TextView
+            android:id="@+id/registrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/registrar"
+            android:textColor="@color/blue"
+            android:textColorLink="@color/blue"
+            android:textSize="14sp" />
+
         //Boton que permite iniciar sesion en la app
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/GoogleBtn"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ic_redes"
+            android:drawableLeft="@drawable/ic_google"
+            android:text="Google"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/FaceBookBtn"
+            android:layout_width="128dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ic_redes"
+            android:drawableLeft="@drawable/ic_facebook"
+            android:text="Facebook"
+            android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInAppCompatButton"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="160dp"
             android:background="@drawable/ic_buttom"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
