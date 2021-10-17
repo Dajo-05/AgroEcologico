@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.agroecologico.FragmentoComprador.CarritoCompraFragment
 import com.example.agroecologico.FragmentoComprador.HomeCompradorFragment
 import com.example.agroecologico.FragmentoComprador.ListaNegociosCompradorFragment
+import com.example.agroecologico.FragmentoComprador.ListadoCompraFragment
 import com.example.agroecologico.FragmentosVendedor.HomeVendedorFragment
 import com.example.agroecologico.FragmentosVendedor.ListaPedidosFragment
 import com.example.agroecologico.FragmentosVendedor.ListaProductoFragment
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                     var dato = snapshot.child("${userId}").child("rol").getValue().toString()
 
                     if( dato.equals("Admin") ){
+                        vincular.btnNav.visibility = View.GONE
                         vincular.progressBarMain.visibility = View.GONE
                         val homeadminf = HomeAdminFragment()
                         val fragmentManager = supportFragmentManager
@@ -193,7 +195,7 @@ class MainActivity : AppCompatActivity() {
         fragmentManager = supportFragmentManager
         val homeComprador = HomeCompradorFragment()
         val lNegocio = ListaNegociosCompradorFragment()
-        val carrito = CarritoCompraFragment()
+        val carrito = ListadoCompraFragment()
 
 
         fragmentoActivo = homeComprador
