@@ -59,6 +59,7 @@ class ListaProductosCompradorFragment : Fragment(), CompraAdapter.onItemClikList
         enviarCarrito(ListaNegocio[position], listaIdproductos[itemRV] )
     }
 
+
     fun enviarCarrito(producto: Producto,idpro: String ){
         val user = auth.currentUser?.uid.toString()
         database = FirebaseDatabase.getInstance().getReference("CarritoTemporal").child(user)

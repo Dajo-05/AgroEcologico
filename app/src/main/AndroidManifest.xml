@@ -13,9 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroEcologico">
-        <activity
-            android:name=".RegistroRedes"
-            android:exported="true" />
+
         <activity
             android:name=".RegistroUsuario"
             android:exported="true" />
@@ -25,6 +23,7 @@
             android:theme="@style/Theme.Main" />
         <activity
             android:name=".InicioSesion"
+            android:theme="@style/splashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

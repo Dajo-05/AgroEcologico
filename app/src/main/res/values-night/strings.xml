@@ -8,4 +8,5 @@
     <string name="TextDtPernalesCorreo">Correo:</string>
     <string name="TextDtPernalesDir">Dirección:</string>
     <string name="TextDtPernalesTel">Teléfono:</string>
+    <string name="TexTcarrito">Adicionar Cantidad</string>
 </resources>

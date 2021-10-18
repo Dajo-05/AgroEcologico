@@ -29,7 +29,7 @@ class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
     private lateinit var mBinding: FragmentListaPedidosBinding
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
     private lateinit var database: DatabaseReference
-   // private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var adaptador: PedidosAdapter
     private lateinit var listaDePedidos: MutableList<Pedidos>
     private  var itemRV: Int  = 0
@@ -43,6 +43,7 @@ class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
         // Inflate the layout for this fragment
         mBinding = FragmentListaPedidosBinding.inflate(inflater, container, false)
         database = Firebase.database.reference
+        auth= Firebase.auth
         listaDePedidos = arrayListOf()
         Log.d("Inico", "ingreso al Fregamento de lista de pedido")
         leerDato()
@@ -58,22 +59,22 @@ class ListaPedidosFragment : Fragment(),PedidosAdapter.onItemClikListener  {
     private fun leerDato() {
        // val userId = Firebase.auth.currentUser?.uid.toString()
         Log.d("Metodo", "leer Datos")
-
-        val datos = FirebaseDatabase.getInstance().reference.child("Pedidos")
+        val user = auth.currentUser?.uid.toString()
+        val datos = FirebaseDatabase.getInstance().reference.child("Pedidos").child("${user}")
         val recuperar = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 if (snapshot.exists()){
                     Log.d("ingreso a pedido", "ingreso al if")
                     for (ds in snapshot.children){
-                        var pedido = Pedidos(cliente = ds.child("Cliente").getValue().toString(),
+                        var pedido = Pedidos(cliente = ds.child("cliente").getValue().toString(),
                             correo = ds.child("correo").getValue().toString(),
                             direccion = ds.child("direccion").getValue().toString(),
                             entrega = ds.child("entrega").getValue().toString(),
                             telefono = ds.child("telefono").getValue().toString(),
                              total = ds.child("total").getValue().toString() )
 
-                        for (compra in ds.child("comprado").children){
+                        for (compra in ds.child("compra").children){
                              var comp = ProductoComprado(nombreProducto = compra.child("nombreProducto").getValue().toString(),
                                                          precio = compra.child("precio").getValue().toString(),
                                                          cantidad = compra.child("cantidad").getValue().toString(),

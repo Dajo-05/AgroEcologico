@@ -90,8 +90,7 @@ class ListadoCompraFragment : Fragment(), AdapterCompNegocio.onItemClikListener 
 
         })
     }
-
-
+    
     fun VerProductos(posicion: Int){
         Snackbar.make(mBinding.root, "Nombre negocio: ${ListaNegocio[posicion].nombrePuesto}", Snackbar.LENGTH_SHORT).show()
 

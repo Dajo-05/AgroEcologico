@@ -6,4 +6,6 @@
     <dimen name="marginTextTopTile">50dp</dimen>
     <dimen name="marginTopEditTxt">30dp</dimen>
     <dimen name="marginTextTopTile2">30dp</dimen>
+    <dimen name="marginTextTopTile3">10</dimen>
+    <dimen name="marginTextTopTile4">5dp</dimen>
 </resources>
